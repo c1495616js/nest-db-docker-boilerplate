@@ -1,0 +1,73 @@
+version: "3.4"
+
+services:
+  pgAdmin:
+    restart: always
+    image: dpage/pgadmin4
+    ports:
+      - "8000:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: 1234@admin.com
+      PGADMIN_DEFAULT_PASSWORD: 1234
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+  postgres:
+    restart: always
+    image: postgres
+    container_name: "postgres_container"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: me
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: testDb
+    volumes:
+      - pgvol:/var/lib/postgresql/data
+  # nginx:
+  #   depends_on:
+  #     - api
+  #     - client
+  #   restart: always
+  #   build:
+  #     context: ./nginx
+  #     context: Dockerfile.development
+  #   ports:
+  #     - '3050:80'
+  # mongoku:
+  #   depends_on:
+  #     - mongodb
+  #   image: 'huggingface/mongoku'
+  #   container_name: 'nest-mongo-gui'
+  #   environment:
+  #     - MONGOKU_DEFAULT_HOST="nest:1234@mongodb"
+  #   ports:
+  #     - '3100:3100'
+  # mongodb:
+  #   image: 'mongo'
+  #   container_name: 'nest-mongo-container'
+  #   environment:
+  #     - MONGO_INITDB_DATABASE=nest
+  #     - MONGO_INITDB_ROOT_USERNAME=nest
+  #     - MONGO_INITDB_ROOT_PASSWORD=1234
+  #   volumes:
+  #     - ./database/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+  #     - mongovol:/data/db
+  #   ports:
+  #     - "27017-27019:27017-27019"
+  api:
+    depends_on:
+      - postgres
+    build:
+      context: server
+      dockerfile: Dockerfile.development
+    ports:
+      - "4000:4000"
+    volumes:
+      - /app/node_modules
+      - ./server:/app
+
+volumes:
+  pgvol:
+  pgadmin:
+  # mongoku:
+  # mongovol:
