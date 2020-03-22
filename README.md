@@ -79,3 +79,7 @@ import { ItemsModule } from "./items/items.module";
 })
 export class AppModule {}
 ```
+
+## MISC
+
+- upgrade whole packages in `package.json` to new version
