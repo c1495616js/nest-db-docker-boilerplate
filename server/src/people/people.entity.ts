@@ -6,6 +6,7 @@ import {
   ManyToOne,
 } from 'typeorm';
 import { Group } from 'src/group/group.entity';
+import { GenderEnum } from './enum/gender.enum';
 
 @Entity()
 export class People extends BaseEntity {
@@ -15,8 +16,12 @@ export class People extends BaseEntity {
   @Column()
   name: string;
 
-  @Column()
-  gender: string;
+  @Column('enum', {
+    name: 'gender',
+    enum: GenderEnum,
+    default: GenderEnum.male,
+  })
+  gender: GenderEnum;
 
   @Column({ nullable: true })
   address: string;

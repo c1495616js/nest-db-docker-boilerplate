@@ -1,4 +1,5 @@
 import { IsString, IsNotEmpty, IsOptional } from 'class-validator';
+import { GenderEnum } from '../enum/gender.enum';
 
 export class PeopleDto {
   @IsString()
@@ -6,8 +7,8 @@ export class PeopleDto {
   name: string;
 
   @IsString()
-  @IsNotEmpty()
-  gender: string;
+  @IsOptional()
+  gender: GenderEnum;
 
   @IsOptional()
   address: string;
