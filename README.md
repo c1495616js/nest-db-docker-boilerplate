@@ -1,5 +1,44 @@
 ## Server
 
+## Commit
+
+- https://www.conventionalcommits.org/en/v1.0.0/
+- https://github.com/conventional-changelog/commitlint
+- https://github.com/commitizen/cz-cli
+- https://medium.com/@lorenzen.jacob/standardize-git-commit-messages-b3f938f078be
+
+```
+npm install --save-dev @commitlint/{config-conventional,cli}
+npm install cz-conventional-changelog --save-dev
+npm install commitizen --save-dev
+```
+
+```
+touch commitlint.config.js
+
+# add this
+module.exports = {
+  extends: ['@commitlint/config-conventional'],
+};
+
+```
+
+#### package.json
+
+```
+"husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+```
+
 ### docker
 
 https://www.hangge.com/blog/cache/category_81_1.html
@@ -43,39 +82,39 @@ https://markheath.net/post/exploring-postgresql-with-docker
 #### schema first
 
 ```ts
-import { Module } from "@nestjs/common";
-import { TypeOrmModule } from "@nestjs/typeorm";
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
-import { GraphQLModule } from "@nestjs/graphql";
-import { join } from "path";
-import { UserModule } from "./user/user.module";
-import { ItemsModule } from "./items/items.module";
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { GraphQLModule } from '@nestjs/graphql';
+import { join } from 'path';
+import { UserModule } from './user/user.module';
+import { ItemsModule } from './items/items.module';
 
 @Module({
   imports: [
     GraphQLModule.forRoot({
-      typePaths: ["./**/*.graphql"],
+      typePaths: ['./**/*.graphql'],
       playground: true,
       definitions: {
-        path: join(process.cwd(), "src/graphql.ts"),
-        outputAs: "class"
-      }
+        path: join(process.cwd(), 'src/graphql.ts'),
+        outputAs: 'class',
+      },
     }),
     TypeOrmModule.forRoot({
-      type: "mongodb",
-      url: "mongodb://nest:1234@mongodb",
-      entities: [join(__dirname, "**/**.entity{.ts,.js}")],
+      type: 'mongodb',
+      url: 'mongodb://nest:1234@mongodb',
+      entities: [join(__dirname, '**/**.entity{.ts,.js}')],
       synchronize: true,
       useNewUrlParser: true,
-      logging: true
+      logging: true,
     }),
     UserModule,
-    ItemsModule
+    ItemsModule,
   ],
   controllers: [AppController],
-  providers: [AppService]
+  providers: [AppService],
 })
 export class AppModule {}
 ```
