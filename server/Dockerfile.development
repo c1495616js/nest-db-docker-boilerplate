@@ -1,4 +1,4 @@
-FROM node:10
+FROM node:12.13-alpine
 
 WORKDIR /app
 
@@ -8,7 +8,8 @@ RUN npm install
 
 # install nest-cli
 RUN npm i -g @nestjs/cli
+RUN npm cache clean --force
 
 COPY . .
 
-ENTRYPOINT [ "npm","run", "start:dev" ]
+ENTRYPOINT [ "npm","run", "start:debug" ]

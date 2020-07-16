@@ -1,16 +1,17 @@
 version: "3.4"
 
 services:
-  pgAdmin:
-    restart: always
-    image: dpage/pgadmin4
-    ports:
-      - "8000:80"
-    environment:
-      PGADMIN_DEFAULT_EMAIL: 1234@admin.com
-      PGADMIN_DEFAULT_PASSWORD: 1234
-    volumes:
-      - pgadmin:/var/lib/pgadmin
+  # pgAdmin:
+  #   restart: always
+  #   image: dpage/pgadmin4
+  #   ports:
+  #     - '8000:80'
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: 1234@admin.com
+  #     PGADMIN_DEFAULT_PASSWORD: 1234
+  #   volumes:
+  #     - pgadmin:/var/lib/pgadmin
+
   postgres:
     restart: always
     image: postgres
@@ -62,6 +63,7 @@ services:
       dockerfile: Dockerfile.development
     ports:
       - "4000:4000"
+      - 9229:9229
     volumes:
       - /app/node_modules
       - ./server:/app

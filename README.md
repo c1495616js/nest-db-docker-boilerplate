@@ -1,6 +1,11 @@
 # Nest.js + Database + Nginx + Docker
 
-## Server
+## Nest.js
+
+### Refs
+
+- https://awesomeopensource.com/project/juliandavidmr/awesome-nestjs
+- https://blog.logrocket.com/containerized-development-nestjs-docker
 
 ### JWT
 
@@ -128,3 +133,7 @@ export class AppModule {}
 ## MISC
 
 - upgrade whole packages in `package.json` to new version
+
+## Issue
+
+- http://kb.yworks.com/article/784/Installation-Issue-on-macOS---EPERM-operation-not-permitted-uvcwd
