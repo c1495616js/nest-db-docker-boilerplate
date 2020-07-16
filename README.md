@@ -1,3 +1,5 @@
+# Nest.js + Database + Nginx + Docker
+
 ## Server
 
 ## Commit
@@ -39,7 +41,7 @@ module.exports = {
   }
 ```
 
-### docker
+## docker
 
 https://www.hangge.com/blog/cache/category_81_1.html
 
@@ -49,11 +51,11 @@ https://itnext.io/server-side-rendering-with-react-redux-and-react-router-fa5b67
 
 https://itnext.io/server-side-rendering-with-react-redux-and-react-router-fa5b67d4965e
 
-#### node
+### node
 
 https://www.digitalocean.com/community/tutorials/how-to-use-the-docker-plugin-for-visual-studio-code
 
-#### mongo
+### mongo
 
 https://stackoverflow.com/questions/40892832/web-based-ui-for-mongodb
 https://github.com/huggingface/Mongoku
@@ -65,7 +67,7 @@ http://people.oregonstate.edu/~chriconn/sites/docker_mongoDB/
 
 https://markheath.net/post/exploring-postgresql-with-docker
 
-### GraphQL
+## GraphQL
 
 - pass variable
   https://medium.com/atheros/graphql-quick-tip-how-to-pass-variables-into-a-mutation-in-graphiql-23ecff4add57
